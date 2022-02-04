@@ -42,7 +42,6 @@ function validate() {
   const alertLastName = document.getElementById('alert-lastname');
 
   var email = document.getElementById('email'); 
-  const emailFilter = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const alertEmail = document.getElementById('alert-email'); 
 
   var birthdate = document.getElementById('birthdate');
@@ -58,6 +57,10 @@ function validate() {
   const alertTOS = document.getElementById('alert-tos'); 
   
   var sendForm = true;
+  
+  //regex 
+  const emailFilter = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const lettersFilter = /^[a-zA-Z]+$/;
 
 
   firstName = firstName.value;
@@ -70,6 +73,9 @@ function validate() {
  if( firstName == "") {
   //console.log(" veuillez entrer votre prénom");  
   alertFirstName.innerHTML = "veuillez entrer votre prénom";
+  sendForm = false 
+ }else if(!firstName.match(lettersFilter)){
+  alertFirstName.innerHTML = 'votre prénom ne doit contenir que des lettres';
   sendForm = false 
  } else if(firstName.length < 2) {
   //console.log('votre prénom doit contenir au moins 2 caractère');
@@ -85,6 +91,9 @@ function validate() {
  if( lastName == "") {
   //console.log(" veuillez entrer votre nom");  
   alertLastName.innerHTML = "veuillez entrer votre nom"
+  sendForm = false 
+ }else if(!lastName.match(lettersFilter)){
+  alertFirstName.innerHTML = 'votre nom ne doit contenir que des lettres';
   sendForm = false 
  } else if(lastName.length < 2) {
   //console.log('votre nom doit contenir au moins 2 caractère');
@@ -158,9 +167,15 @@ if(termesOfServices == null) {
  return sendForm; 
 }
 
+async function btnSubmitCheck() {
+ 
+  var sendForm = await validate();
 
-
-
-
-
-
+ // console.log(sendForm);
+  if(sendForm) {
+    console.log('confirmation message');
+    //fonction afficher modal confirmation
+  }else{
+    console.log("not sent");
+  }
+}
