@@ -12,8 +12,6 @@ const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
 const formData = document.querySelectorAll(".formData");
 
-const modalValidation = document.getElementsByClassName('container-msg');
-const btnSubmit = document.getElementsByClassName("btn-submit");
 
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
@@ -61,6 +59,7 @@ function validate() {
   //regex 
   const emailFilter = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const lettersFilter = /^[a-zA-Z]+$/;
+  const numbersFilter = /^[0-9]*$/;
 
 
   firstName = firstName.value;
@@ -121,21 +120,29 @@ if(email == ""){
   alertEmail.innerHTML = ""
 }
 
-
+let today = new Date().toISOString().slice(0, 10)
 //birthdate validation
 if(birthdate == ""){
   //console.log("veuillez entrer votre date de naissance");
   alertBirthdate.innerHTML = "veuillez entrer votre date de naissance"
   sendForm = false
-} else {
-  //console.log("date de naissance valide");
-  alertBirthdate.innerHTML = ""
+} else if(birthdate > today) {
+  alertBirthdate.innerHTML = "error msg"
+  sendForm = false
+}
+else {
+  //console.log(birthdate);
+  alertBirthdate.innerHTML = "";
+  console.log(today);
 }
 
 //quantity validation
 if(quantity == ""){
   //console.log("veuillez entrer une valeur");
   alertQuantity.innerHTML = "veuillez entrer une valeur"
+  sendForm = false
+} else if(!quantity.match(numbersFilter)) {
+  alertQuantity.innerHTML = "veuillez saisir une valeur numérique"
   sendForm = false
 } else {
   //console.log("valeur valide");
@@ -167,15 +174,23 @@ if(termesOfServices == null) {
  return sendForm; 
 }
 
+
 async function btnSubmitCheck() {
- 
+
   var sendForm = await validate();
 
  // console.log(sendForm);
   if(sendForm) {
-    console.log('confirmation message');
-    //fonction afficher modal confirmation
+    console.log('confirmation message');  
+    console.log(sendForm); 
+
+    //launch modal confirmation 
+    //modalbg.style.display = "block";
+    console.log( modalbg.style.display);
+
   }else{
     console.log("not sent");
+    console.log(sendForm);
+
   }
 }
