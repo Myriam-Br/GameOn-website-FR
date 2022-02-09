@@ -21,10 +21,13 @@ function launchModal() {
   modalbg.style.display = "block";
 }
 
+
 // close modal form
-function closeModal() {
+function closeModal(modalId) {
   console.log("modal closed successfully");
-  modalbg.style.display = "none";
+  const modalForm = document.getElementById(modalId);
+  modalForm.style.display = "none";
+
 }
 
 
@@ -127,7 +130,7 @@ if(birthdate == ""){
   alertBirthdate.innerHTML = "veuillez entrer votre date de naissance"
   sendForm = false
 } else if(birthdate.slice(0,4) > 2004) {
-  alertBirthdate.innerHTML = "veuillez entrer une date valide"
+  alertBirthdate.innerHTML = "vous devez être majeur pour vous inscrire"
   console.log(today);
   //console.log(new Date().toISOString().slice(0,4));
  //console.log("BIRTHDATE",birthdate.slice(0,4));
@@ -177,11 +180,13 @@ if(termesOfServices == null) {
 }
 
 
+//confirmation envoi formulaire
+
 async function btnSubmitCheck() {
 
   var sendForm = await validate();
- // const modalConfirmation = document.getElementsByClassName('show-after-submit');
-  //modalConfirmation.style.display = "none"
+  const modalConfirmation = document.getElementById('modal-confirmation');
+  //modalConfirmation.style.display = "block"
 
  // console.log(sendForm);
   if(sendForm) {
@@ -189,7 +194,8 @@ async function btnSubmitCheck() {
    
     //launch modal confirmation 
     //console.log(modalConfirmation);
-    //modalConfirmation.style.display = "block"
+    closeModal('modal-form')
+    modalConfirmation.style.display = "block"
 
   }else{
     console.log(sendForm, "not sent");

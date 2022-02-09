@@ -52,16 +52,14 @@
         </button>
       </div>
 
-      <div class="bground">
+      <div class="bground" id="modal-form">
         <div class="content">
-          <span class="close" onclick="closeModal()"></span>
+          <span class="close" onclick="closeModal('modal-form')"></span>
           <div class="modal-body">
             <form
               class="signup-form"
               name="reserve"
-              action="index.html"
-              method="get"
-              onsubmit="return validate()"
+           
             >
               <div
                 class="formData">
@@ -110,7 +108,7 @@
               <div
                 class="formData">
                 <label for="quantity">À combien de tournois GameOn avez-vous déjà participé ?</label><br>
-                <input type="number" class="text-control" id="quantity" name="quantity" min="0" max="99"><br>
+                <input type="text" class="text-control" id="quantity" name="quantity" min="0" max="99"><br>
                 <p id="alert-quantity" class="alert-msg"></p>
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
@@ -208,7 +206,7 @@
               </div>
               <input
                 class="btn-submit"
-                type="submit"
+                type="button"
                 class="button"
                 value="C'est parti"    
                 onclick="btnSubmitCheck()"
@@ -217,21 +215,21 @@
           </div>    
         </div>   
       </div>
-<!--
-      <div class="bground show-after-submit">
+
+      <div class="bground" id="modal-confirmation">
         <div class="content ">
-          <span class="close" onclick="closeModal()"></span>
+          <span class="close" onclick="closeModal('modal-confirmation')"></span>
           <div class="modal-body">
             <p>Merci de votre inscription</p>
             <button
             class="btn-submit"
             class="button"  
-            onclick="btnSubmitCheck()"
+            onclick="closeModal('modal-confirmation')"
           >Fermer</button>
           </div>      
         </div>
       </div>
-  -->
+  
     </main>
     <footer>
       <p class="copyrights">
