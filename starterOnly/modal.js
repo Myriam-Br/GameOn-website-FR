@@ -120,20 +120,22 @@ if(email == ""){
   alertEmail.innerHTML = ""
 }
 
-let today = new Date().toISOString().slice(0, 10)
+let today = new Date().toISOString().slice(0,4)
 //birthdate validation
 if(birthdate == ""){
   //console.log("veuillez entrer votre date de naissance");
   alertBirthdate.innerHTML = "veuillez entrer votre date de naissance"
   sendForm = false
-} else if(birthdate > today) {
-  alertBirthdate.innerHTML = "error msg"
+} else if(birthdate.slice(0,4) > 2004) {
+  alertBirthdate.innerHTML = "veuillez entrer une date valide"
+  console.log(today);
+  //console.log(new Date().toISOString().slice(0,4));
+ //console.log("BIRTHDATE",birthdate.slice(0,4));
   sendForm = false
 }
 else {
   //console.log(birthdate);
   alertBirthdate.innerHTML = "";
-  console.log(today);
 }
 
 //quantity validation
@@ -178,19 +180,19 @@ if(termesOfServices == null) {
 async function btnSubmitCheck() {
 
   var sendForm = await validate();
+ // const modalConfirmation = document.getElementsByClassName('show-after-submit');
+  //modalConfirmation.style.display = "none"
 
  // console.log(sendForm);
   if(sendForm) {
-    console.log('confirmation message');  
-    console.log(sendForm); 
-
+    console.log(sendForm,'confirmation message');  
+   
     //launch modal confirmation 
-    //modalbg.style.display = "block";
-    console.log( modalbg.style.display);
+    //console.log(modalConfirmation);
+    //modalConfirmation.style.display = "block"
 
   }else{
-    console.log("not sent");
-    console.log(sendForm);
+    console.log(sendForm, "not sent");
 
   }
 }
