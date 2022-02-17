@@ -131,6 +131,19 @@ main {
   background: #3876ac;
 }
 
+
+#modal-confirmation .content{
+display: flex;
+width: auto;
+height: 765px;
+position: relative;
+
+}
+
+#close-msg{
+margin-top: 600px;
+}
+
 .footer {
   margin: 20px;
   padding: 10px;
@@ -581,6 +594,10 @@ footer {
   #logo{
     width: 65%;
     margin-top: 0;
+  }
+
+  .message{
+    font-size: 1.3rem;
   }
   
   .topnav{
