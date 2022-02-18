@@ -175,7 +175,6 @@ if(termesOfServices == null) {
   //console.log("condition acceptées");
   alertTOS.innerHTML = ""
 }
-
  return sendForm; 
 }
 
@@ -191,7 +190,28 @@ async function btnSubmitCheck() {
  // console.log(sendForm);
   if(sendForm) {
     console.log(sendForm,'confirmation message');  
-   
+
+    //element du dom
+    var firstName = document.getElementById('first');
+    var lastName = document.getElementById('last');
+    var birthdate = document.getElementById('birthdate');
+    var quantity = document.getElementById('quantity'); 
+    const locationSelected = document.querySelector('input[name="location"]:checked');
+    var email = document.getElementById('email');
+    
+    
+
+    firstName.value ="";
+    lastName.value ="";
+    birthdate.value ="";
+    quantity.value ="";
+    locationSelected.value ="";
+    email.value ="";
+
+
+
+
+
     //launch modal confirmation 
     //console.log(modalConfirmation);
     closeModal('modal-form')
